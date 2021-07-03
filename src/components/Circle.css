@@ -1,0 +1,11 @@
+.circle {
+  background-color: navy;
+  border-radius: 60%;
+  border: 1px solid black;
+  height: 60px;
+  width: 140px;
+  cursor: grab;
+  position: absolute;
+  /* top: 120px;
+  left: 80px; */
+}
