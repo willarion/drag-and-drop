@@ -14,4 +14,5 @@
   margin: 0;
   line-height: 2;
   border-bottom: 2px solid black;
+  user-select: none;
 }

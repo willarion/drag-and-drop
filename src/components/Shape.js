@@ -11,8 +11,6 @@ function Shape(props) {
   const [coordinates, setCoordinates] = React.useState(initialShapePosition)
   const [prevСoordinates, setPrevCoordinates] = React.useState({ top: 0, left: 0 })
 
-  console.log(isDragging, coordinates, prevСoordinates)
-
   function extractPositionDelta(e) {
     const left = e.pageX
     const top = e.pageY
@@ -43,30 +41,35 @@ function Shape(props) {
     }
 
     const {left, top} = extractPositionDelta(e);
-    console.log(left, top)
 
     setCoordinates({
       top: coordinates.top + top,
       left: coordinates.left + left,
     })
-
-    console.log('движение')
   }
 
-
-
   return (
-    <div className={props.circle ? "circle" : 'square'} 
-      onPointerMove={handlePointerMove}
-      onPointerDown={handleMouseDown}
-      onPointerUp={handleMouseUp}
-
-      style={{
-        top: `${coordinates.top}px`,
-        left: `${coordinates.left}px`,
-      }}
-    >
-    </div>
+    <>
+      { props.isDraggable
+        ? 
+        (<div className={props.circle ? "circle" : 'square'} 
+            onPointerMove={handlePointerMove}
+            onPointerDown={handleMouseDown}
+            onPointerUp={handleMouseUp}
+            style={{
+                top: `${coordinates.top}px`,
+                left: `${coordinates.left}px`,
+              }}
+          />)
+        :
+        (<div className={props.circle ? "circle" : 'square'} 
+          onMouseEnter={() => props.hangleFigure(props.circle)}
+          style={{
+            top: `${props.circle ? 120 : 240}px`,
+            left: `80px`,}}
+        />)
+      }  
+    </>
   );
 }
 
