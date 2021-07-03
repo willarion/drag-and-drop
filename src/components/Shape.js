@@ -52,17 +52,18 @@ function Shape(props) {
     <>
       { props.isDraggable
         ? 
-        (<div className={props.circle ? "circle" : 'square'} 
+        (<div className={props.circle ? "shape circle" : 'shape square'} 
             onPointerMove={handlePointerMove}
             onPointerDown={handleMouseDown}
             onPointerUp={handleMouseUp}
             style={{
                 top: `${coordinates.top}px`,
                 left: `${coordinates.left}px`,
+                cursor: isDragging ? 'grabbing' : 'grab'
               }}
           />)
         :
-        (<div className={props.circle ? "circle" : 'square'} 
+        (<div className={props.circle ? "shape circle" : 'shape square'} 
           onMouseEnter={() => props.hangleFigure(props.circle)}
           style={{
             top: `${props.circle ? 120 : 240}px`,
