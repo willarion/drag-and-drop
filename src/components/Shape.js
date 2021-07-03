@@ -1,10 +1,14 @@
 import React from 'react';
-import './Circle.css'
+import './Shape.css'
 
-function Circle(props) {
+function Shape(props) {
+
+  const initialShapePosition = props.circle 
+    ? { top: 120, left: 80 } 
+    : { top: 240, left: 80 }
   
   const [isDragging, setIsDragging] =  React.useState(false)
-  const [coordinates, setCoordinates] = React.useState({ top: 120, left: 80 })
+  const [coordinates, setCoordinates] = React.useState(initialShapePosition)
   const [prevСoordinates, setPrevCoordinates] = React.useState({ top: 0, left: 0 })
 
   console.log(isDragging, coordinates, prevСoordinates)
@@ -52,7 +56,7 @@ function Circle(props) {
 
 
   return (
-    <div className="circle" 
+    <div className={props.circle ? "circle" : 'square'} 
       onPointerMove={handlePointerMove}
       onPointerDown={handleMouseDown}
       onPointerUp={handleMouseUp}
@@ -66,4 +70,4 @@ function Circle(props) {
   );
 }
 
-export default Circle;
+export default Shape;

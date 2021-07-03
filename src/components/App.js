@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Figures from './Figures';
 import Canvas from './Canvas';
-import Circle from './Circle';
+import Shape from './Shape';
 
 
 function App() {
@@ -33,11 +33,11 @@ function App() {
       <Figures 
       />
       <Canvas />
-      { circles.length > 0 && circles.map((circle) => 
+      {/* { circles.length > 0 && circles.map((circle) => 
         <Circle key={circle.id}
           id={circle.id}
         />
-      )}
+      )} */}
     </div>
   );
 }

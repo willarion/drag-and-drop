@@ -1,6 +1,5 @@
 import React from 'react';
 import './Canvas.css'
-import Circle from './Circle';
 
 
 function Canvas() {
