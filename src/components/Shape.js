@@ -1,5 +1,5 @@
 import React from 'react';
-import './Shape.css'
+import './Shape.css';
 
 function Shape(props) {
 
@@ -10,6 +10,17 @@ function Shape(props) {
   const [isDragging, setIsDragging] =  React.useState(false)
   const [coordinates, setCoordinates] = React.useState(initialShapePosition)
   const [prevСoordinates, setPrevCoordinates] = React.useState({ top: 0, left: 0 })
+  const [isUpper, setIsUpper] = React.useState(false)
+
+
+ //  const isUpper = React.useRef(false)
+
+//   function handlePosition(a) {
+//     console.log('ку')
+//     isUpper.current = a
+//   }
+
+ // console.log(isUpper)
 
   function extractPositionDelta(e) {
     const left = e.pageX
@@ -27,12 +38,16 @@ function Shape(props) {
   }
 
   function handleMouseDown(e) {
+   // props.handlePosition(props.id, handlePosition)
+
+    setIsUpper(true)
     setIsDragging(true)
     extractPositionDelta(e)
   }
 
-  function handleMouseUp() {
+  function handleMouseUp(e) {
     setIsDragging(false)
+    setIsUpper(false)
   }
 
   function handlePointerMove(e) {
@@ -59,7 +74,9 @@ function Shape(props) {
             style={{
                 top: `${coordinates.top}px`,
                 left: `${coordinates.left}px`,
-                cursor: isDragging ? 'grabbing' : 'grab'
+                cursor: isDragging ? 'grabbing' : 'grab',
+                border: isDragging ? '3px solid black' : '1px solid black',
+                zIndex: isUpper ? 999 : 0,
               }}
           />)
         :
