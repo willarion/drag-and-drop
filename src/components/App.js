@@ -43,8 +43,7 @@ function App() {
 
   return (
     <div className="App" >
-      <Figures />
-      <Canvas />
+      <p className="title">Drag us around!</p>
       <Shape 
         hangleFigure={createShapeDuplicate}
         circle={true}
