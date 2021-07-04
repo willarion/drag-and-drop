@@ -8,10 +8,9 @@ import Shape from './Shape';
 function App() {
 
   const [circleId, setCircleId] = React.useState(1)
-  const [circles, setCircles] = React.useState([{id: 0, name: 'изначальный круг'}])
+  const [circles, setCircles] = React.useState([{id: '0ci', name: 'изначальный круг'}])
   const [squareId, setSquareId] = React.useState(1)
-  const [squares, setSquares] = React.useState([{id: 0, name: 'изначальный квадрат'}])
-  // const [previousFigure, setPreviousFigure] = React.useState({})
+  const [squares, setSquares] = React.useState([{id: '0sq', name: 'изначальный квадрат'}])
 
   function handleId(setter) {
     setter((prevState) => (prevState += 1))
@@ -21,7 +20,7 @@ function App() {
    
     handleId(setCircleId)
 
-    const newCircle = {id: circleId, name: 'круг' }
+    const newCircle = {id: circleId + 'ci', name: 'круг' }
     setCircles([...circles, newCircle])
   }
 
@@ -29,10 +28,9 @@ function App() {
 
     handleId(setSquareId)
 
-    const newSquare = {id: squareId, name: 'квадрат' }
+    const newSquare = {id: squareId + 'sq', name: 'квадрат' }
     setSquares([...squares, newSquare])
   }
-
 
   function createShapeDuplicate(circle) {
     if (circle) {
@@ -42,27 +40,9 @@ function App() {
     createSquare()
   }
 
-  // const previousFigure = React.useRef(null)
-
-  // function handleUpperPosition(id, setUpper) {
-  //   console.log(id, 'id')
-  //   console.log(previousFigure.current + ' current')
-
-  //   if (previousFigure.current === null || previousFigure.current === id) {
-  //     setUpper(true)
-
-  //     previousFigure.current = id;
-  //     return
-  //   }
-    
-  //   previousFigure.current = id;
-
-  //   setUpper(false)
-  // }
-
 
   return (
-    <div className="App">
+    <div className="App" >
       <Figures />
       <Canvas />
       <Shape 
@@ -77,18 +57,16 @@ function App() {
       />
       { circles.length > 0 && circles.map((circle) => 
         <Shape key={circle.id}
-          id={`${circle.id}ci`}
+          id={circle.id}
           circle={true}
           isDraggable={true}
-      //    handlePosition={handleUpperPosition}
         />
       )}
       { squares.length > 0 && squares.map((square) => 
         <Shape key={square.id}
-          id={`${square.id}sq`}
+          id={square.id}
           circle={false}
           isDraggable={true}
-       //   handlePosition={handleUpperPosition}
         />
       )}
     </div>

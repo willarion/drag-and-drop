@@ -12,16 +12,6 @@ function Shape(props) {
   const [prevСoordinates, setPrevCoordinates] = React.useState({ top: 0, left: 0 })
   const [isUpper, setIsUpper] = React.useState(false)
 
-
- //  const isUpper = React.useRef(false)
-
-//   function handlePosition(a) {
-//     console.log('ку')
-//     isUpper.current = a
-//   }
-
- // console.log(isUpper)
-
   function extractPositionDelta(e) {
     const left = e.pageX
     const top = e.pageY
@@ -38,7 +28,7 @@ function Shape(props) {
   }
 
   function handleMouseDown(e) {
-   // props.handlePosition(props.id, handlePosition)
+    e.preventDefault();
 
     setIsUpper(true)
     setIsDragging(true)
@@ -63,13 +53,33 @@ function Shape(props) {
     })
   }
 
+ 
+  React.useEffect(() => {
+    if (props.isDraggable) {
+
+      function handleDelete(e) {
+        if (e.key === 'Delete' ) {
+
+          console.log(props)
+          props.deleteFigure()
+        }
+      }
+      
+      document.addEventListener('keyup', handleDelete)
+  
+      return () => {
+        document.removeEventListener('keyup', handleDelete)
+      }
+    }
+  }, [props])
+
   return (
     <>
       { props.isDraggable
         ? 
-        (<div className={props.circle ? "shape circle" : 'shape square'} 
+        (<div draggable={true} className={props.circle ? "shape circle" : 'shape square'} 
             onPointerMove={handlePointerMove}
-            onPointerDown={handleMouseDown}
+            onDragStart={handleMouseDown}
             onPointerUp={handleMouseUp}
             style={{
                 top: `${coordinates.top}px`,
