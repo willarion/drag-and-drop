@@ -1,7 +1,5 @@
 import React from 'react';
 import './App.css';
-import Figures from './Figures';
-import Canvas from './Canvas';
 import Shape from './Shape';
 
 
@@ -43,8 +41,7 @@ function App() {
 
   return (
     <div className="App" >
-      <Figures />
-      <Canvas />
+      <p className="title">Drag us around!</p>
       <Shape 
         hangleFigure={createShapeDuplicate}
         circle={true}
